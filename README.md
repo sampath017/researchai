@@ -1,12 +1,4 @@
-## TODO
-
-### MachineLearning package
-
-1. compartmentalize losses.py and LinearRegression classes.
-
-## Dependencies
-
-Recommended to use virtual environment [pypoetry](https://python-poetry.org/).
+Basic Machine learning and Neural Networks algorithms are implemented for education and research purposes .
 
 ## Contributing
 
