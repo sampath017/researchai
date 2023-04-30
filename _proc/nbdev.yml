@@ -1,0 +1,9 @@
+project:
+  output-dir: _docs
+
+website:
+  title: "AI_Algorithms_Implementation"
+  site-url: "https://sampath017.github.io/AI_Algorithms_Implementation"
+  description: "Basic Machine learning and Neural Networks algorithms are implemented for education and research purposes ."
+  repo-branch: main
+  repo-url: "https://github.com/sampath017/AI_Algorithms_Implementation"
