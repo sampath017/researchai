@@ -98,7 +98,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="styles.css">
 <meta property="og:title" content="AI_Algorithms_Implementation - Layers">
 <meta property="og:description" content="The layers of NN">
-<meta property="og:image" content="https://sampath017.github.io/AI_Algorithms_Implementation/00_core_files/figure-html/cell-4-output-1.png">
+<meta property="og:image" content="https://sampath017.github.io/AI_Algorithms_Implementation/00_layers_files/figure-html/cell-5-output-1.png">
 <meta property="og:site-name" content="AI_Algorithms_Implementation">
 <meta property="og:image:height" content="413">
 <meta property="og:image:width" content="567">
@@ -125,7 +125,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Layers</li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./layers.html">Layers</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -145,7 +145,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./layers.html" class="sidebar-item-text sidebar-link">
+  <a href="./layers.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Layers</span></a>
   </div>
 </li>
@@ -160,6 +160,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#dense" id="toc-dense" class="nav-link active" data-scroll-target="#dense">Dense</a></li>
+  <li><a href="#dense.forward" id="toc-dense.forward" class="nav-link" data-scroll-target="#dense.forward">Dense.forward</a></li>
   <li><a href="#spiral_data" id="toc-spiral_data" class="nav-link" data-scroll-target="#spiral_data">spiral_data</a></li>
   <li><a href="#example-usage" id="toc-example-usage" class="nav-link" data-scroll-target="#example-usage">Example usage</a></li>
   </ul>
@@ -197,7 +198,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <blockquote class="blockquote">
 <pre><code> Dense (n_inputs:int, n_neurons:int)</code></pre>
 </blockquote>
-<p>Initialize self. See help(type(self)) for accurate signature.</p>
+<p>Fully connected layer</p>
 <table class="table">
 <thead>
 <tr class="header">
@@ -221,12 +222,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 <hr>
 </section>
+<section id="dense.forward" class="level3">
+<h3 class="anchored" data-anchor-id="dense.forward">Dense.forward</h3>
+<blockquote class="blockquote">
+<pre><code> Dense.forward (X:numpy.ndarray)</code></pre>
+</blockquote>
+<p>Forward input <code>X</code> through the layer</p>
+<table class="table">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 38%">
+<col style="width: 52%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Type</strong></th>
+<th><strong>Details</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>X</td>
+<td>ndarray</td>
+<td>shape of (batch_size, n_features) if a single batch is passed it has to be of shape (1, n_features).</td>
+</tr>
+<tr class="even">
+<td><strong>Returns</strong></td>
+<td><strong>ndarray</strong></td>
+<td><strong>the output of the layer</strong></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
 <section id="spiral_data" class="level3">
 <h3 class="anchored" data-anchor-id="spiral_data">spiral_data</h3>
 <blockquote class="blockquote">
 <pre><code> spiral_data (samples:int=100, classes:int=3)</code></pre>
 </blockquote>
-<p>Create spiral dataset inspired by <code>https://cs231n.github.io/neural-networks-case-study/#data</code></p>
+<p>Create spiral dataset</p>
 <table class="table">
 <thead>
 <tr class="header">
@@ -253,28 +288,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td><strong>Returns</strong></td>
 <td><strong>tuple</strong></td>
 <td></td>
-<td></td>
+<td><strong>X and y arrays’s</strong></td>
 </tr>
 </tbody>
 </table>
+<p>This code is inspired by this <a href="https://cs231n.github.io/neural-networks-case-study/#data">course</a></p>
 </section>
 <section id="example-usage" class="level2">
 <h2 class="anchored" data-anchor-id="example-usage">Example usage</h2>
 <p>Make data and plot it</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> spiral_data()</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(X[:, <span class="dv">0</span>], X[:, <span class="dv">1</span>], c<span class="op">=</span>y)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<p><img src="00_core_files/figure-html/cell-4-output-1.png" class="quarto-discovered-preview-image img-fluid"></p>
-</div>
-</div>
-<p>Create a <code>Dense</code> layer and <code>forward</code> pass</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>dense <span class="op">=</span> Dense(<span class="dv">2</span>, <span class="dv">3</span>)</span>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> spiral_data()</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>dense.forward(X)[:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(X[:, <span class="dv">0</span>], X[:, <span class="dv">1</span>], c<span class="op">=</span>y)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="00_layers_files/figure-html/cell-5-output-1.png" class="quarto-discovered-preview-image img-fluid"></p>
+</div>
+</div>
+<p>Create a <code>Dense</code> layer and <code>forward</code> pass through it</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dense <span class="op">=</span> Dense(<span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>dense.forward(X)[:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>array([[ 0.11514021,  0.4438316 , -0.29415088],
        [ 0.10561452,  0.44299997, -0.30237425],

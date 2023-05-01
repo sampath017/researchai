@@ -1,17 +1,17 @@
 [
   {
-    "objectID": "core.html",
-    "href": "core.html",
-    "title": "core",
-    "section": "",
-    "text": "Dense\n\n Dense (n_inputs, n_neurons)\n\nInitilize params\nArgs: n_inputs (int): The number of features. n_neurons (int): The number of neurons to have for the layer.\n\n\n\nspiral_data\n\n spiral_data (samples=100, classes=3)"
+    "objectID": "core.html#example-usage",
+    "href": "core.html#example-usage",
+    "title": "Layers",
+    "section": "Example usage",
+    "text": "Example usage\nMake data and plot it\n\nX, y = spiral_data()\n\nplt.scatter(X[:, 0], X[:, 1], c=y)\nplt.show()\n\n\n\n\nCreate a Dense layer and forward pass\n\ndense = Dense(2, 3)\n\ndense.forward(X)[:5]\n\narray([[ 0.11514021,  0.4438316 , -0.29415088],\n       [ 0.10561452,  0.44299997, -0.30237425],\n       [ 0.08988609,  0.43807441, -0.31435629],\n       [ 0.08586146,  0.44093092, -0.31927195],\n       [ 0.08003018,  0.44218066, -0.32509621]])"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "AI_Algorithms_Implementation",
     "section": "",
-    "text": "This file will become your README and also the index of your documentation."
+    "text": "The source code is in src dir and it was produced by notebooks in the nbs dir by using nbdev."
   },
   {
     "objectID": "index.html#install",
@@ -21,10 +21,10 @@
     "text": "Install\npip install AI_Algorithms_Implementation"
   },
   {
-    "objectID": "index.html#how-to-use",
-    "href": "index.html#how-to-use",
-    "title": "AI_Algorithms_Implementation",
-    "section": "How to use",
-    "text": "How to use\nFill me in please! Don’t forget code examples:\n\n1+1\n\n2"
+    "objectID": "layers.html#example-usage",
+    "href": "layers.html#example-usage",
+    "title": "Layers",
+    "section": "Example usage",
+    "text": "Example usage\nMake data and plot it\n\nX, y = spiral_data()\n\nplt.scatter(X[:, 0], X[:, 1], c=y)\nplt.show()\n\n\n\n\nCreate a Dense layer and forward pass through it\n\ndense = Dense(2, 3)\n\ndense.forward(X)[:5]\n\narray([[ 0.11514021,  0.4438316 , -0.29415088],\n       [ 0.10561452,  0.44299997, -0.30237425],\n       [ 0.08988609,  0.43807441, -0.31435629],\n       [ 0.08586146,  0.44093092, -0.31927195],\n       [ 0.08003018,  0.44218066, -0.32509621]])"
   }
 ]
