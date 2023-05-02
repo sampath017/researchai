@@ -13,6 +13,26 @@ website:
     navbar:
         background: primary
         search: true
+        collapse-below: lg
+        left:
+            # - text: "Get Started"
+            #     href: getting_started.ipynb
+            # - text: "Tutorial"
+            #     href: tutorials/tutorial.ipynb
+            # - text: "Blog"
+            #     href: blog/index.qmd
+            - text: "Help"
+              menu:
+                  - text: "Report an Issue"
+                    icon: bug
+                    href: https://github.com/sampath017/researchai/issues
+                  - text: "Chat with dev"
+                    icon: chat-right-text
+                    href: mailto:sampathkovvali@gmail.com
+        right:
+            - icon: github
+              href: https://github.com/sampath017/researchai
+
     sidebar:
         style: floating
 

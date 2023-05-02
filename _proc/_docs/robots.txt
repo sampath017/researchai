@@ -1,1 +1,1 @@
-Sitemap: https://sampath017.github.io/AI_Algorithms_Implementation/sitemap.xml
+Sitemap: https://sampath017.github.io/researchai/sitemap.xml

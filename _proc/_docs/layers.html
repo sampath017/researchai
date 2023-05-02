@@ -8,7 +8,7 @@
 
 <meta name="description" content="The layers of NN">
 
-<title>AI_Algorithms_Implementation - Layers</title>
+<title>researchai - layers</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -96,10 +96,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <link rel="stylesheet" href="styles.css">
-<meta property="og:title" content="AI_Algorithms_Implementation - Layers">
+<meta property="og:title" content="researchai - layers">
 <meta property="og:description" content="The layers of NN">
-<meta property="og:image" content="https://sampath017.github.io/AI_Algorithms_Implementation/00_layers_files/figure-html/cell-5-output-1.png">
-<meta property="og:site-name" content="AI_Algorithms_Implementation">
+<meta property="og:image" content="https://sampath017.github.io/researchai/00_layers_files/figure-html/cell-8-output-1.png">
+<meta property="og:site-name" content="researchai">
 <meta property="og:image:height" content="413">
 <meta property="og:image:width" content="567">
 </head>
@@ -112,7 +112,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">AI_Algorithms_Implementation</span>
+    <span class="navbar-title">researchai</span>
     </a>
   </div>
         <div class="quarto-navbar-tools ms-auto">
@@ -125,7 +125,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./layers.html">Layers</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./layers.html">layers</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -140,13 +140,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">AI_Algorithms_Implementation</span></a>
+ <span class="menu-text">ResearchAI</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./layers.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Layers</span></a>
+ <span class="menu-text">layers</span></a>
   </div>
 </li>
     </ul>
@@ -159,19 +159,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#dense" id="toc-dense" class="nav-link active" data-scroll-target="#dense">Dense</a></li>
+  <li><a href="#fully-connected-layers" id="toc-fully-connected-layers" class="nav-link active" data-scroll-target="#fully-connected-layers">Fully connected layers</a>
+  <ul class="collapse">
+  <li><a href="#dense" id="toc-dense" class="nav-link" data-scroll-target="#dense">Dense</a></li>
   <li><a href="#dense.forward" id="toc-dense.forward" class="nav-link" data-scroll-target="#dense.forward">Dense.forward</a></li>
+  </ul></li>
+  <li><a href="#data-generators" id="toc-data-generators" class="nav-link" data-scroll-target="#data-generators">Data generators</a>
+  <ul class="collapse">
   <li><a href="#spiral_data" id="toc-spiral_data" class="nav-link" data-scroll-target="#spiral_data">spiral_data</a></li>
+  </ul></li>
   <li><a href="#example-usage" id="toc-example-usage" class="nav-link" data-scroll-target="#example-usage">Example usage</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/sampath017/AI_Algorithms_Implementation/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/sampath017/researchai/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Layers</h1>
+<h1 class="title">layers</h1>
 </div>
 
 <div>
@@ -192,11 +198,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
+<section id="fully-connected-layers" class="level2">
+<h2 class="anchored" data-anchor-id="fully-connected-layers">Fully connected layers</h2>
+<p>These layers allow use to have neurons of on layer connected to other layer without any breaks. Most widely used.</p>
 <hr>
+<p><a href="https://github.com/sampath017/researchai/blob/main/researchai/nn/layers.py#L13" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="dense" class="level3">
 <h3 class="anchored" data-anchor-id="dense">Dense</h3>
 <blockquote class="blockquote">
-<pre><code> Dense (n_inputs:int, n_neurons:int)</code></pre>
+<pre><code> Dense (in_features:int, out_features:int)</code></pre>
 </blockquote>
 <p>Fully connected layer</p>
 <table class="table">
@@ -209,18 +219,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>n_inputs</td>
+<td>in_features</td>
 <td>int</td>
 <td>The number of features.</td>
 </tr>
 <tr class="even">
-<td>n_neurons</td>
+<td>out_features</td>
 <td>int</td>
 <td>The number of neurons to have for the layer.</td>
 </tr>
 </tbody>
 </table>
+<section id="example" class="level4">
+<h4 class="anchored" data-anchor-id="example">Example</h4>
+<p>A layer can be created by</p>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;python&quot;}" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>layer <span class="op">=</span> Dense(<span class="dv">5</span>, <span class="dv">3</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>layer</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="23">
+<pre><code>Dense(in_features=5, out_features=3)</code></pre>
+</div>
+</div>
+<p>layer parameters can be accessed by <code>layer.weigths</code> and <code>layer.biases</code> variables</p>
 <hr>
+<p><a href="https://github.com/sampath017/researchai/blob/main/researchai/nn/layers.py#L26" target="_blank" style="float:right; font-size:smaller">source</a></p>
+</section>
 </section>
 <section id="dense.forward" class="level3">
 <h3 class="anchored" data-anchor-id="dense.forward">Dense.forward</h3>
@@ -245,7 +268,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="odd">
 <td>X</td>
 <td>ndarray</td>
-<td>shape of (batch_size, n_features) if a single batch is passed it has to be of shape (1, n_features).</td>
+<td>shape of (batch_size, in_features) if a single batch is passed it has to be of shape (1, in_features).</td>
 </tr>
 <tr class="even">
 <td><strong>Returns</strong></td>
@@ -254,14 +277,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<hr>
+<section id="example-1" class="level4">
+<h4 class="anchored" data-anchor-id="example-1">Example</h4>
+<p>Data can be passed through with</p>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;python&quot;}" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> [[<span class="fl">2.0</span>, <span class="fl">3.0</span>, <span class="fl">4.0</span>, <span class="fl">5.0</span>, <span class="fl">6.0</span>]] <span class="co"># of shape (1, 5)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>layer.forward(X)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>layer.output</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<pre><code>array([[ 8.47999191, -6.8053504 , -3.19016013]])</code></pre>
+</div>
+</div>
+<p>and output can be accessed by <code>layer.output</code> variable after the forward pass</p>
 </section>
+</section>
+</section>
+<section id="data-generators" class="level2">
+<h2 class="anchored" data-anchor-id="data-generators">Data generators</h2>
+<p>Artifical data generators can be usefull for quick testing and debuging purposes.</p>
+<hr>
+<p><a href="https://github.com/sampath017/researchai/blob/main/researchai/nn/layers.py#L37" target="_blank" style="float:right; font-size:smaller">source</a></p>
 <section id="spiral_data" class="level3">
 <h3 class="anchored" data-anchor-id="spiral_data">spiral_data</h3>
 <blockquote class="blockquote">
-<pre><code> spiral_data (samples:int=100, classes:int=3)</code></pre>
+<pre><code> spiral_data (samples:int=100, classes:int=3, noice_fact=None)</code></pre>
 </blockquote>
-<p>Create spiral dataset</p>
+<p>Create a 2D spiral for each class</p>
 <table class="table">
 <thead>
 <tr class="header">
@@ -285,6 +327,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>number of classes</td>
 </tr>
 <tr class="odd">
+<td>noice_fact</td>
+<td>NoneType</td>
+<td>None</td>
+<td>add noice to the spiral angles.</td>
+</tr>
+<tr class="even">
 <td><strong>Returns</strong></td>
 <td><strong>tuple</strong></td>
 <td></td>
@@ -293,30 +341,57 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <p>This code is inspired by this <a href="https://cs231n.github.io/neural-networks-case-study/#data">course</a></p>
+<section id="example-2" class="level4">
+<h4 class="anchored" data-anchor-id="example-2">Example</h4>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;python&quot;}" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> spiral_data()</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Test for number of data points.</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> (X.shape[<span class="dv">0</span>] <span class="op">==</span> <span class="dv">100</span> <span class="op">*</span> <span class="dv">3</span>) <span class="kw">and</span> (y.shape[<span class="dv">0</span>] <span class="op">==</span> <span class="dv">100</span> <span class="op">*</span> <span class="dv">3</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>plt.scatter(X[:, <span class="dv">0</span>], X[:, <span class="dv">1</span>], c<span class="op">=</span>y)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="00_layers_files/figure-html/cell-8-output-1.png" class="quarto-discovered-preview-image img-fluid"></p>
+</div>
+</div>
+<p>we can see three spirals, now increase the noice in the angles</p>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;python&quot;}" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> spiral_data(noice_fact<span class="op">=</span><span class="fl">2.5</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(X[:, <span class="dv">0</span>], X[:, <span class="dv">1</span>], c<span class="op">=</span>y)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="00_layers_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+</section>
 </section>
 <section id="example-usage" class="level2">
 <h2 class="anchored" data-anchor-id="example-usage">Example usage</h2>
-<p>Make data and plot it</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> spiral_data()</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(X[:, <span class="dv">0</span>], X[:, <span class="dv">1</span>], c<span class="op">=</span>y)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Make data with <a href="https://sampath017.github.io/researchai/layers.html#spiral_data"><code>researchai.nn.layers.spiral_data</code></a> and plot it</p>
+<p>Add some noice to spirals by increasing the noice_fact</p>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;python&quot;}" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> spiral_data(noice_fact<span class="op">=</span><span class="fl">2.5</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>plt.scatter(X[:, <span class="dv">0</span>], X[:, <span class="dv">1</span>], c<span class="op">=</span>y)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="00_layers_files/figure-html/cell-5-output-1.png" class="quarto-discovered-preview-image img-fluid"></p>
+<p><img src="00_layers_files/figure-html/cell-10-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<p>Create a <code>Dense</code> layer and <code>forward</code> pass through it</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dense <span class="op">=</span> Dense(<span class="dv">2</span>, <span class="dv">3</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>dense.forward(X)[:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<pre><code>array([[ 0.11514021,  0.4438316 , -0.29415088],
-       [ 0.10561452,  0.44299997, -0.30237425],
-       [ 0.08988609,  0.43807441, -0.31435629],
-       [ 0.08586146,  0.44093092, -0.31927195],
-       [ 0.08003018,  0.44218066, -0.32509621]])</code></pre>
+<p>Create a <a href="https://sampath017.github.io/researchai/layers.html#dense"><code>researchai.nn.layers.Dense</code></a> layer and forward pass through it</p>
+<div class="cell" data-vscode="{&quot;languageId&quot;:&quot;python&quot;}" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>dense <span class="op">=</span> Dense(<span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>dense.forward(X)[:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<pre><code>array([[-0.32104264, -0.86396488, -2.12740994],
+       [-0.32975848, -0.86461072, -2.13622016],
+       [-0.34353207, -0.86936126, -2.14830142],
+       [-0.34610823, -0.87912212, -2.14618081],
+       [-0.36716138, -0.88181375, -2.16690324]])</code></pre>
 </div>
 </div>
 
