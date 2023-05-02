@@ -3,6 +3,13 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+_proc/
+idx/
+.install
+conda/
+_site/
+_docs/
+
 .vscode/
 .vs/
 .idea/
