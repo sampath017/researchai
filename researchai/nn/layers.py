@@ -7,7 +7,6 @@ __all__ = ['Dense', 'spiral_data']
 import numpy as np
 import matplotlib.pyplot as plt
 
-from graphviz import Source
 from fastcore.basics import patch
 
 # %% ../../nbs/01_layers.ipynb 10
