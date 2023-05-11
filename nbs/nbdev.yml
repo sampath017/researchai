@@ -1,9 +1,0 @@
-project:
-  output-dir: _docs
-
-website:
-  title: "researchai"
-  site-url: "https://sampath017.github.io/researchai"
-  description: "Basic Machine learning and Neural Networks algorithms are implemented for education and research purposes ."
-  repo-branch: main
-  repo-url: "https://github.com/sampath017/researchai"
