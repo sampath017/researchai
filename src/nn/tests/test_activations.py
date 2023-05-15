@@ -1,3 +1,5 @@
+
+import pytest
 import numpy as np
 from activations import ReLU, Softmax
 
@@ -13,25 +15,26 @@ class TestReLU:
 
 
 class TestSoftmax:
-    def setup_method(self, method):
+    def setup_method(self):
         self.softmax = Softmax()
 
-    def teardown_method(self, method):
+    def teardown_method(self):
         del self.softmax
 
-    # FORWARD TEST
     def forward(self, X):
         self.output = self.softmax.forward(X)
 
-    def test_uniform_distributation(self):
+    @pytest.mark.parametrize("i", range(10))
+    def test_uniform_distributation(self, i):
         """probablity of one point equals to 1/n."""
         n = 10_00_00_000
         X = np.random.rand(1, n)
         for batch in X:
             output = self.softmax.forward(batch)
-            np.allclose(output, 1/n)
+            assert np.allclose(output, 1/n)
 
-    def test_sum_probs(self):
+    @pytest.mark.parametrize("i", range(10))
+    def test_sum_probs(self, i):
         """Sum of the probs on last axis equals 1."""
         X = np.random.rand(1000, 1000)
         self.forward(X)

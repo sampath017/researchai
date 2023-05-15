@@ -10,7 +10,8 @@ class ReLU:
 
 class Softmax:
     def forward(self, X):
-        exps = np.exp(X - np.max(X, axis=-1, keepdims=True)) # overflow stability
-        probs = exps / exps.sum(axis=-1, keepdims=True)
-        
-        return probs
+        # overflow stability
+        exps = np.exp(X - np.max(X, axis=-1, keepdims=True))
+        self.output = exps / exps.sum(axis=-1, keepdims=True)
+
+        return self.output
