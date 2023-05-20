@@ -1,6 +1,6 @@
 import pytest
 import numpy as np
-from src.nn.activations import ReLU, Softmax
+from activations import ReLU, Softmax
 
 
 class TestReLU:

@@ -1,5 +1,5 @@
 import numpy as np
-from src.nn.losses import CategoricalCrossEntropyLoss
+from losses import CategoricalCrossEntropyLoss
 
 
 class TestCategoricalCrossEntropyLoss:

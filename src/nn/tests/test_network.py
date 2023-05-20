@@ -1,10 +1,10 @@
 import pytest
 import numpy as np
 
-from src.nn.layers import Dense
-from src.nn.losses import CategoricalCrossEntropyLoss
-from src.nn.activations import ReLU, Softmax
-from src.nn.metrics import accuracy
+from layers import Dense
+from losses import CategoricalCrossEntropyLoss
+from activations import ReLU, Softmax
+from metrics import accuracy
 
 from nnfs.datasets import spiral_data
 
