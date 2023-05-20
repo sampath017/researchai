@@ -9,6 +9,7 @@ idx/
 conda/
 _site/
 _docs/
+nbs/
 
 .vscode/
 .vs/

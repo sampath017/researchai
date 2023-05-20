@@ -1,10 +1,10 @@
 import pytest
 import numpy as np
 
-from layers import Dense
-from losses import CategoricalCrossEntropyLoss
-from activations import ReLU, Softmax
-from metrics import accuracy
+from src.nn.layers import Dense
+from src.nn.losses import CategoricalCrossEntropyLoss
+from src.nn.activations import ReLU, Softmax
+from src.nn.metrics import accuracy
 
 from nnfs.datasets import spiral_data
 
@@ -20,10 +20,10 @@ class TestNetwork:
         self.loss_fn = CategoricalCrossEntropyLoss()
 
     def teardown_method(self):
-        del self.loss_fn
+        del self
 
-    def forward(self, X, y_true):
-        self.dense1.forward(X)
+    def forward(self, x, y_true):
+        self.dense1.forward(x)
         self.relu.forward(self.dense1.output)
         self.dense2.forward(self.relu.output)
         self.relu.forward(self.dense2.output)
@@ -36,8 +36,8 @@ class TestNetwork:
 
     @pytest.mark.parametrize("i", range(10))
     def test_accuracy(self, i):
-        X, y = spiral_data(samples=1000, classes=10)
-        self.forward(X, y)
+        x, y = spiral_data(samples=1000, classes=10)
+        self.forward(x, y)
 
         acc = accuracy(self.softmax.output, y)
 
