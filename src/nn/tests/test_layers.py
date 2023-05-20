@@ -1,7 +1,6 @@
-import torch
 import numpy as np
 
-from src.nn.layers import Dense
+from layers import Dense
 
 
 class TestDenseForward:
