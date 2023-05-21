@@ -2,7 +2,7 @@ import pytest
 import numpy as np
 
 from layers import Dense
-from losses import CategoricalCrossEntropyLoss
+from losses import CategoricalCrossEntropy
 from activations import ReLU, Softmax
 from metrics import accuracy
 
@@ -17,7 +17,7 @@ class TestNetwork:
         self.dense4 = Dense(1000, 10)
         self.relu = ReLU()
         self.softmax = Softmax()
-        self.loss_fn = CategoricalCrossEntropyLoss()
+        self.loss_fn = CategoricalCrossEntropy()
 
     def teardown_method(self):
         del self

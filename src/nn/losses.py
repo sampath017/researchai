@@ -14,7 +14,7 @@ class Loss(ABC):
         return np.mean(sample_losses)  # data loss
 
 
-class CategoricalCrossEntropyLoss(Loss):
+class CategoricalCrossEntropy(Loss):
     def forward(self, y_pred, y_true):
         # clip values to avoid overflow
         y_pred_clipped = np.clip(y_pred, 1e-7, 1)
@@ -31,3 +31,13 @@ class CategoricalCrossEntropyLoss(Loss):
         neg_logs = -np.log(correct_confidences)
 
         return neg_logs
+
+    def backward(self, y_predictions, y_true):
+        num_labels = y_true.shape[-1]
+        num_samples = y_true.shape[0]
+
+        if y_true.ndim == 1:
+            y_true = np.eye(num_labels)[y_true]
+
+        self.dinputs = -y_true / y_predictions
+        self.dinputs /= num_samples

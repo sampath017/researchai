@@ -1,10 +1,10 @@
 import numpy as np
-from losses import CategoricalCrossEntropyLoss
+from losses import CategoricalCrossEntropy
 
 
 class TestCategoricalCrossEntropyLoss:
     def setup_method(self):
-        self.loss_fn = CategoricalCrossEntropyLoss()
+        self.loss_fn = CategoricalCrossEntropy()
 
     def teardown_method(self):
         del self.loss_fn
