@@ -1,6 +1,6 @@
 import numpy as np
 
-from src.nn.layers import Dense
+from researchai.nn.layers import Dense
 
 
 class TestDenseForward:

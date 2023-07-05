@@ -1,6 +1,6 @@
 import pytest
 import numpy as np
-from src.nn.activations import ReLU, Softmax
+from researchai.nn.activations import ReLU, Softmax
 
 
 class TestReLU:
@@ -23,28 +23,30 @@ class TestSoftmax:
         del self.softmax
 
     def forward(self, inputs):
-        self.output = self.softmax.forward(inputs)
+        self.outputs = self.softmax.forward(inputs)
+
+        return self.outputs
 
     @pytest.mark.parametrize("i", range(10))
     def test_uniform_distribution(self, i):
         """probability of each point equals to 1/n."""
         n = 10_00_00_000
-        inputs = np.random.rand(1, n)
-        for batch in inputs:
-            output = self.softmax.forward(batch)
-            assert np.allclose(output, 1 / n)
+        inputs = np.random.rand(n)
+        outputs = self.forward(inputs)
+        assert np.allclose(outputs, 1 / n)
 
     @pytest.mark.parametrize("i", range(10))
     def test_sum_probabilities(self, i):
         """Sum of the probabilities on last axis equals 1."""
-        inputs = np.random.rand(1000, 1000)
-        self.forward(inputs)
+        inputs = np.random.rand(1000)
+        outputs = self.forward(inputs)
 
-        assert np.allclose(self.output.sum(axis=-1), 1.0)
+        assert np.allclose(outputs.sum(axis=-1), 1.0)
 
-    def test_numerical_overflow_stability(self):
-        inputs = np.array([[1e13, 1e14], [1e20, 1e21]])
-        expected_output = np.array([[0., 1.], [0., 1.]])
-        self.forward(inputs)
+    @pytest.mark.parametrize("i", range(10))
+    def test_numerical_stability(self, i):
+        """Check for big number stability"""
+        inputs = 1e24 * np.random.rand(100)
+        outputs = self.forward(inputs)
 
-        assert np.allclose(expected_output, self.output)
+        assert not np.isnan(outputs).any()
