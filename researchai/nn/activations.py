@@ -15,20 +15,18 @@ class ReLU:
 
         Parameters
         ----------
-        inputs: shape (Any)
+        inputs: shape (*)
 
         Returns
         -------
-        outputs: shape (Any)
+        outputs: shape (*)
 
         Examples
         --------
-        inputs = np.random.rand(5, 10)
-
-        relu = ReLU(10, 1)
-        outputs = relu.forward(inputs)
-
-        print(outputs)
+        >>> inputs = np.random.rand(5)     
+        >>> relu = ReLU()
+        >>> relu.forward(inputs)
+        array([0.81978176, 0.09681321, 0.48868056, 0.75821085, 0.07669289])
         """
         self.inputs = inputs
         self.outputs = np.maximum(0, inputs)
@@ -47,20 +45,18 @@ class Softmax:
 
          Parameters
          ----------
-         inputs: shape (num_batches, Any)
+         inputs: shape (num_batches, *)
 
          Returns
          -------
-         outputs: shape (num_batches, Any)
+         outputs: shape (num_batches, *)
 
          Examples
          --------
-         >> inputs = np.random.rand(5, 10)
-
-         >> softmax = softmax(1, 10)
-         >> outputs = softmax.forward(inputs)
-
-         >> outputs.sum()
+         >>> inputs = np.random.rand(5, 10)
+         >>> softmax = softmax(1, 10)
+         >>> outputs = softmax.forward(inputs)
+         >>> outputs.sum()
          1.0
          """
         self.inputs = inputs

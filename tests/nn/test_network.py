@@ -1,12 +1,12 @@
 import pytest
 import numpy as np
 
-from layers import Dense
-from losses import CategoricalCrossEntropy
-from activations import ReLU, Softmax
-from metrics import accuracy
+from researchai.nn.layers import Dense
+from researchai.nn.losses import CategoricalCrossEntropy
+from researchai.nn.activations import ReLU, Softmax
+from researchai.nn.metrics import accuracy
 
-from nnfs.datasets import spiral_data
+from researchai.nn.datasets import spiral
 
 
 class TestNetwork:
@@ -36,7 +36,7 @@ class TestNetwork:
 
     @pytest.mark.parametrize("i", range(10))
     def test_accuracy(self, i):
-        x, y = spiral_data(samples=1000, classes=10)
+        x, y = spiral(samples=1000, classes=10)
         self.forward(x, y)
 
         acc = accuracy(self.softmax.outputs, y)

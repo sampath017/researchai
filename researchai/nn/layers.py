@@ -1,5 +1,5 @@
 import numpy as np
-from utils import Array
+from researchai.nn.utils import Array
 
 
 class Dense:
@@ -28,18 +28,16 @@ class Dense:
 
         Examples
         --------
-        >> inputs = np.random.rand(5, 10)
-
-        >> dense = Dense(10, 1)
-        >> outputs = dense.forward(inputs)
+        >>> inputs = np.random.rand(5, 10)
+        >>> dense = Dense(10, 1)
+        >>> dense.forward(inputs)
+        array([[0.03152764],
+            [0.02610983],
+            [0.02270446],
+            [0.03197972],
+            [0.03055829]])
         """
-
-        if inputs.shape[-1] != self.in_features:
-            raise ValueError(
-                "The second dimension of inputs should match in_features")
-        else:
-            self.inputs = inputs
-
+        self.inputs = inputs
         self.outputs = np.dot(self.inputs, self.weights) + self.biases
 
         return self.outputs
