@@ -1,12 +1,12 @@
 import pytest
 import numpy as np
 
-from researchai.nn.layers import Dense
-from researchai.nn.losses import CategoricalCrossEntropy
-from researchai.nn.activations import ReLU, Softmax
-from researchai.nn.metrics import accuracy
+from nnfs.layers import Dense
+from nnfs.losses import CategoricalCrossEntropy
+from nnfs.activations import ReLU, Softmax
+from nnfs.metrics import classification_accuracy
 
-from researchai.nn.datasets import spiral
+from nnfs.datasets import spiral
 
 
 class TestNetwork:
@@ -39,6 +39,6 @@ class TestNetwork:
         x, y = spiral(samples=1000, classes=10)
         self.forward(x, y)
 
-        acc = accuracy(self.softmax.outputs, y)
+        acc = classification_accuracy(self.softmax.outputs, y)
 
         assert np.isclose(acc, 0.1, atol=0.03)

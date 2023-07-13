@@ -3,12 +3,11 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 
-from researchai.nn.activations import ReLU, Softmax
+from nnfs.activations import ReLU, Softmax
 
 
-class TestReLU:
-    # FORWARD TESTS
-    def test_forward_zeros(self):
+class TestReLUForward:
+    def test_zeros(self):
         """Check if number of negative inputs are same as the number of (outputs == 0) after passing thought ReLU"""
         inputs = np.random.randn(100, 100)
 
@@ -28,7 +27,7 @@ class TestReLU:
             inputs), F.relu(torch.tensor(inputs)))
 
 
-class TestSoftmax:
+class TestSoftmaxForward:
     def setup_method(self):
         self.softmax = Softmax()
 
@@ -47,7 +46,7 @@ class TestSoftmax:
         inputs = np.random.rand(n)
 
         np.testing.assert_allclose(self.forward(
-            inputs), F.softmax(torch.tensor(inputs)))
+            inputs), F.softmax(torch.tensor(inputs), dim=-1))
 
     @pytest.mark.parametrize("i", range(10))
     def test_uniform_distribution(self, i):

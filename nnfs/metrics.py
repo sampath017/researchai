@@ -1,9 +1,7 @@
 import numpy as np
 
-from researchai.nn.utils import Array, Float
 
-
-def classification_accuracy(y_pred: Array, y_true: np.ndarray) -> np.float64:
+def classification_accuracy(y_pred: np.ndarray, y_true: np.ndarray) -> np.float64:
     """
     Accuracy for classifcation tasks
 

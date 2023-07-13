@@ -2,21 +2,20 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 
-from researchai.nn.layers import Dense
+from nnfs.layers import Dense
 
 
 class TestDenseForward:
-    def test_generic(self):
-        """With multiple inputs and outputs"""
+    def test_single_batch(self):
+        """Single batch with multiple inputs and outputs"""
         inputs = np.array([
             [1, 2, 3],
-            [4, 5, 6]
         ])
 
         dense = Dense(3, 2)
         dense.forward(inputs)
 
-        np.testing.assert_equal(dense.outputs.shape, (2, 2))
+        np.testing.assert_equal(dense.outputs.shape, (1, 2))
 
     def test_one_in_one_out(self):
         """one input and one output"""

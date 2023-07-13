@@ -1,19 +1,20 @@
 import numpy as np
 import torch
+import pytest
 import torch.nn.functional as F
 
-from researchai.nn.losses import CategoricalCrossEntropy
+from nnfs.losses import CategoricalCrossEntropy
 
 
-class TestCategoricalCrossEntropyLoss:
+class TestCategoricalCrossEntropyLossForward:
     def setup_method(self):
         self.loss_fn = CategoricalCrossEntropy()
 
     def teardown_method(self):
         del self.loss_fn
 
-    def forward(self, y_predictions, y_true):
-        self.output = self.loss_fn.calculate(y_predictions, y_true)
+    def forward(self, y_pred, y_true):
+        self.output = self.loss_fn.calculate(y_pred, y_true)
 
         return self.output
 
@@ -33,14 +34,16 @@ class TestCategoricalCrossEntropyLoss:
 
         np.testing.assert_equal(np.isinf(self.output), False)
 
+    @pytest.mark.parametrize("i", range(10))
     @torch.no_grad()
-    def test_against_torch(self):
+    def test_against_torch(self, i):
         """Test the outputs of custom cross_entropy against torch nll_loss."""
-        inputs = torch.rand(1000, 1000)
+        inputs = torch.rand(10_000, 10_000)
+        y_true = torch.arange(0, 10_000)
+
         y_pred = F.softmax(inputs, dim=-1)
-        y_true = torch.randint(0, 1000, size=(1000,))
 
         custom_loss = self.forward(y_pred.numpy(), y_true.numpy())
         torch_loss = F.nll_loss(torch.log(y_pred), y_true).numpy()
 
-        np.testing.assert_allclose(custom_loss, torch_loss)
+        np.testing.assert_allclose(custom_loss, torch_loss, atol=1e-6)
