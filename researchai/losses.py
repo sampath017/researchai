@@ -59,7 +59,7 @@ class CategoricalCrossEntropy(Loss):
             [0.03055829]])
         """
         self.y_pred = y_pred
-        self.y_true = one_hot(y_true)
+        self.y_true = one_hot(y_true, num_classes=self.y_pred.shape[-1])
 
         # clip values from both sides by 1e-7 to avoid overflow and to avoid bias toward 1
         self.y_pred_clipped = np.clip(self.y_pred, 1e-7, 1.0-1e-7)

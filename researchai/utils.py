@@ -9,7 +9,7 @@ Layer = Dense
 Float = Union[np.float64, float, int]
 
 
-def one_hot(array: np.ndarray) -> np.ndarray:
+def one_hot(array: np.ndarray, num_classes: int = -1) -> np.ndarray:
     """
     Convert sparse array to one-hot encoded
 
@@ -18,6 +18,8 @@ def one_hot(array: np.ndarray) -> np.ndarray:
     array: array to be encoded.
             shape (num_batches, *)
 
+    num_classes: number of classes to encode with
+
     Returns
     -------
     output: encoded array
@@ -25,18 +27,17 @@ def one_hot(array: np.ndarray) -> np.ndarray:
     """
 
     # check if starts from 0 and incremented by 1.
-    if np.max(array)+1 == len(np.unique(array)):
+
+    if num_classes is not -1:
         # check for sparse
         if array.ndim == 1:
-            output = np.eye(array.max() + 1)[array]
+            output = np.eye(num_classes)[array]
         elif array.ndim == 2:
             output = array
         else:
             raise ValueError("Number of dim must of either 1 or 2")
     else:
-        raise ValueError(
-            "Sparse array must start with 0 and to be incremented by 1, like unique classes has to (0, 1, 2) and not (2, 10, 12)"
-        )
+        raise ValueError("num_classes not defined")
 
     return output
 
