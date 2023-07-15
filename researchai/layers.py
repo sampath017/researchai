@@ -9,7 +9,7 @@ class Dense:
 
         # Parameters
         self.weights = 0.01 * \
-            np.random.rand(self.in_features, self.out_features)
+            np.random.randn(self.in_features, self.out_features)
         self.biases = np.zeros(self.out_features)
 
         # Values

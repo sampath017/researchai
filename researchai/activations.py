@@ -98,7 +98,7 @@ class Softmax:
 
     def backward(self, grads: np.ndarray):
         """
-        Computer gradient for this layer values and parameters
+        Computes gradient 
 
         Parameters
         ----------
@@ -112,11 +112,14 @@ class Softmax:
         """
         self.grads = grads
 
-        self.dinputs = np.empty_like(self.grads)
+        self.inputs_grad = np.empty_like(self.grads)
         for index, (sample_output, sample_grads) in enumerate(zip(self.outputs, self.grads)):
-            sample_output = sample_output.reshape(-1, 1)
+            sample_output = np.reshape(sample_output, (-1, 1))
+
             jacobian_matrix = np.diagflat(sample_output) \
                 - np.dot(sample_output, sample_output.T)
-            self.dinputs[index] = np.dot(jacobian_matrix, sample_grads)
 
-        return self.dinputs
+            # apply chain rule
+            self.inputs_grad[index] = np.dot(jacobian_matrix, sample_grads)
+
+        return self.inputs_grad

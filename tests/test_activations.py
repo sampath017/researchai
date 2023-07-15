@@ -3,7 +3,7 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 
-from nnfs.activations import ReLU, Softmax
+from researchai.activations import ReLU, Softmax
 
 
 class TestReLUForward:

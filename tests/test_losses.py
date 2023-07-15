@@ -3,7 +3,7 @@ import torch
 import pytest
 import torch.nn.functional as F
 
-from nnfs.losses import CategoricalCrossEntropy
+from researchai.losses import CategoricalCrossEntropy
 
 
 class TestCategoricalCrossEntropyLossForward:

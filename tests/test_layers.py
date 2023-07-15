@@ -2,7 +2,7 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 
-from nnfs.layers import Dense
+from researchai.layers import Dense
 
 
 class TestDenseForward:

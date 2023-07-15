@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 import numpy as np
 
-from nnfs.utils import one_hot
+from researchai.utils import one_hot
 
 
 class Loss(ABC):
@@ -14,8 +14,9 @@ class Loss(ABC):
         Calculate the mean to get a single data loss from sample losses.
         """
         sample_losses = self._forward(y_pred, y_true)
+        self.output = np.mean(sample_losses)
 
-        return np.mean(sample_losses)  # data loss
+        return self.output  # data loss
 
 
 class CategoricalCrossEntropy(Loss):
@@ -24,8 +25,10 @@ class CategoricalCrossEntropy(Loss):
     """
 
     def __init__(self):
-        y_pred: np.ndarray
-        y_true: np.ndarray
+        self.y_pred: np.ndarray
+        self.y_pred_clipped: np.ndarray
+        self.y_true: np.ndarray
+        self.output: np.ndarray
 
     def _forward(self, y_pred: np.ndarray, y_true: np.ndarray) -> np.ndarray:
         """
@@ -59,9 +62,10 @@ class CategoricalCrossEntropy(Loss):
         self.y_true = one_hot(y_true)
 
         # clip values from both sides by 1e-7 to avoid overflow and to avoid bias toward 1
-        y_pred_clipped = np.clip(self.y_pred, 1e-7, 1.0-1e-7)
+        self.y_pred_clipped = np.clip(self.y_pred, 1e-7, 1.0-1e-7)
 
-        correct_confidences = np.sum(y_pred_clipped * self.y_true, axis=-1)
+        correct_confidences = np.sum(
+            self.y_pred_clipped * self.y_true, axis=-1)
         neg_logs = -np.log(correct_confidences)
 
         return neg_logs  # sample losses
@@ -75,7 +79,7 @@ class CategoricalCrossEntropy(Loss):
         inputs_grad: shape(num_batches, self.in_features)
         """
         # Gradients of values
-        self.inputs_grad = -self.y_true / self.y_pred
+        self.inputs_grad = -self.y_true / self.y_pred  # GRADIENT EXPLOSION
 
         # Normialize with number of samples
         self.inputs_grad = self.inputs_grad / self.y_true.shape[0]
