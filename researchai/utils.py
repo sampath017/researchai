@@ -1,12 +1,4 @@
-import inspect
 import numpy as np
-from typing import Union, List
-
-from researchai.layers import Dense
-
-Array = Union[List[float], np.ndarray]
-Layer = Dense
-Float = Union[np.float64, float, int]
 
 
 def one_hot(array: np.ndarray, num_classes: int = -1) -> np.ndarray:
@@ -28,7 +20,7 @@ def one_hot(array: np.ndarray, num_classes: int = -1) -> np.ndarray:
 
     # check if starts from 0 and incremented by 1.
 
-    if num_classes is not -1:
+    if num_classes != -1:
         # check for sparse
         if array.ndim == 1:
             output = np.eye(num_classes)[array]

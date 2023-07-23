@@ -1,16 +1,43 @@
 import numpy as np
 
+from abc import ABC, abstractmethod
+from typing import Literal
 
-class Dense:
-    def __init__(self, in_features: int, out_features: int):
-        """A fully connected layer"""
-        self.in_features = in_features
-        self.out_features = out_features
+Linearity = Literal["Linear", "ReLU", "Tanh"]
 
-        # Parameters
-        self.weights = 0.01 * \
-            np.random.randn(self.in_features, self.out_features)
-        self.biases = np.zeros(self.out_features)
+
+class Layer(ABC):
+    @abstractmethod
+    def forward(self, inputs: np.ndarray) -> np.ndarray:
+        pass
+
+    def backward(self, grads: np.ndarray) -> np.ndarray:
+        pass
+
+
+class Dense(Layer):
+    def __init__(self, in_features: int, out_features: int, non_linearity: Linearity = "Linear", bias: bool = True):
+        """
+        A fully connected layer
+
+        Parameters
+        ----------
+        in_features: Input dimensions
+            shape (num_batches, self.in_features)
+
+        out_features: Output dimensions
+            shape (num_batches, self.in_features)
+
+        bias: weather to include bias or not.
+
+        non_linearity: To calculate gain for kaiming initialization
+        """
+        self.in_features: int = in_features
+        self.out_features: int = out_features
+        self.bias: bool = bias
+
+        self.non_linearity: Linearity = non_linearity
+        self._kaiming_init()
 
         # Values
         self.inputs: np.ndarray
@@ -21,6 +48,27 @@ class Dense:
         self.weights_grad: np.ndarray
         self.biases_grad: np.ndarray
         self.inputs_grad: np.ndarray
+
+    def _kaiming_init(self):
+        if self.non_linearity == "ReLU":
+            gain = np.sqrt(2)
+        elif self.non_linearity == "Tanh":
+            gain = 5 / 3
+        elif self.non_linearity == "Linear":
+            gain = 1
+        else:
+            raise ValueError("Non linearity is not valid.")
+
+        # kaiming normal
+        std = gain / np.sqrt(self.in_features)
+
+        # Parameters
+        self.weights = np.random.randn(
+            self.in_features, self.out_features) * std
+        self.weights_velocity: np.ndarray = np.zeros_like(self.weights)
+        if self.bias:
+            self.biases = np.zeros(self.out_features)
+            self.biases_velocity: np.ndarray = np.zeros_like(self.biases)
 
     def forward(self, inputs: np.ndarray) -> np.ndarray:
         """
@@ -71,6 +119,7 @@ class Dense:
 
         # Gradients of parameters
         self.weights_grad = np.dot(self.inputs.T, self.grads)
-        self.biases_grad = np.sum(self.grads, axis=0)
+        if self.bias:
+            self.biases_grad = np.sum(self.grads, axis=0)
 
         return self.inputs_grad

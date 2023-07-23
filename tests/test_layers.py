@@ -49,20 +49,3 @@ class TestDenseForward:
         dense.forward(inputs)
 
         np.testing.assert_equal(dense.outputs.shape, (5, 1))
-
-    """
-    TODO complete this test after implementing kaiming uniform for weight initialization
-    `Delving deep into rectifiers: Surpassing human-level
-    performance on ImageNet classification` - He, K. et al. (2015)
-    """
-    # @torch.no_grad()
-    # def test_against_torch(self):
-    #     """Test the outputs of custom ReLU against torch ReLU."""
-    #     inputs = np.random.randn(1000, 20)
-    #     torch_input = torch.tensor(inputs, dtype=torch.float32)
-
-    #     dense = Dense(20, 20)
-    #     linear = torch.nn.Linear(20, 20)
-
-    #     np.testing.assert_allclose(dense.forward(
-    #         inputs), linear(torch_input).detach().numpy())

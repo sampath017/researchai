@@ -55,6 +55,60 @@ class ReLU:
         return self.inputs_grad
 
 
+class Tanh:
+    def __init__(self):
+        """Tanh function"""
+        self.inputs: np.ndarray
+        self.outputs: np.ndarray
+
+        self.grads: np.ndarray
+        self.inputs_grad: np.ndarray
+
+    def forward(self, inputs: np.ndarray):
+        """
+        Forward pass
+
+        Parameters
+        ----------
+        inputs: the samples
+            shape (*)
+
+        Returns
+        -------
+        outputs: shape (*)
+
+        Examples
+        --------
+        >>> inputs = np.random.rand(5)     
+        >>> relu = Tanh()
+        >>> tanh.forward(inputs)
+
+        """
+        self.inputs = inputs
+        self.outputs = np.tanh(self.inputs)
+
+        return self.outputs
+
+    def backward(self, grads: np.ndarray):
+        """
+        Computer gradient for this layer values and parameters.
+
+        Parameters
+        ----------
+        grads: shape (num_batches, *)
+
+        Returns
+        -------
+        shape (same as grads)
+        """
+        self.grads = grads
+
+        # Gradients on values
+        self.inputs_grad = 1 - self.outputs**2
+
+        return self.inputs_grad
+
+
 class Softmax:
     def __init__(self):
         # Values

@@ -21,25 +21,27 @@ class Softmax_CategoricalCrossentropy():
 
     def forward(self, inputs: np.ndarray, y_true: np.ndarray):
         """
-         Forward pass
+        Forward pass
 
-         Parameters
-         ----------
-         inputs: shape (num_batches, *)
+        Parameters
+        ----------
+        inputs: softmax inputs
+        shape (num_batches, *)
 
-         Returns
-         -------
-         outputs: shape (num_batches, *)
+        Returns
+        -------
+        outputs: cross-entropy loss
+        shape (num_batches, *)
 
-         Examples
-         --------
-         >>> inputs = np.random.rand(5, 10)
-         >>> softmax_cross_entropy = Softmax_CategoricalCrossentropy()
-         >>> loss = softmax_cross_entorpy.forward(inputs)
-         >>> probs = softmax_cross_entorpy.outputs
-         >>> probs.sum()
-         1.0
-         """
+        Examples
+        --------
+        >>> inputs = np.random.rand(5, 10)
+        >>> softmax_cross_entropy = Softmax_CategoricalCrossentropy()
+        >>> loss = softmax_cross_entorpy.forward(inputs)
+        >>> probs = softmax_cross_entorpy.outputs
+        >>> probs.sum()
+        1.0
+        """
         self.inputs = inputs
         self.y_true = y_true
 
