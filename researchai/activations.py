@@ -2,25 +2,21 @@ import numpy as np
 
 
 class ReLU:
-    def __init__(self):
-        """ReLU function"""
-        self.inputs: np.ndarray
-        self.outputs: np.ndarray
+    """ReLU function"""
 
-        self.grads: np.ndarray
-        self.inputs_grad: np.ndarray
-
-    def forward(self, inputs: np.ndarray):
+    def forward(self, inputs):
         """
         Forward pass
 
         Parameters
         ----------
-        inputs: shape (*)
+        inputs: 
+            shape: (*)
 
         Returns
         -------
-        outputs: shape (*)
+        outputs:
+            shape: (*)
 
         Examples
         --------
@@ -34,17 +30,20 @@ class ReLU:
 
         return self.outputs
 
-    def backward(self, grads: np.ndarray):
+    def backward(self, grads):
         """
         Computer gradient for this layer values and parameters.
 
         Parameters
         ----------
-        grads: shape (num_batches, *)
+        grads: 
+            shape (num_batches, *)
 
         Returns
         -------
-        shape (same as grads)
+        inputs_grad: gradients computed with respective to input values
+            shape: grads.shape
+            type: array_like
         """
         self.grads = grads
 
@@ -58,13 +57,13 @@ class ReLU:
 class Tanh:
     def __init__(self):
         """Tanh function"""
-        self.inputs: np.ndarray
-        self.outputs: np.ndarray
+        self.inputs
+        self.outputs
 
-        self.grads: np.ndarray
-        self.inputs_grad: np.ndarray
+        self.grads
+        self.inputs_grad
 
-    def forward(self, inputs: np.ndarray):
+    def forward(self, inputs):
         """
         Forward pass
 
@@ -89,7 +88,7 @@ class Tanh:
 
         return self.outputs
 
-    def backward(self, grads: np.ndarray):
+    def backward(self, grads):
         """
         Computer gradient for this layer values and parameters.
 
@@ -110,47 +109,43 @@ class Tanh:
 
 
 class Softmax:
-    def __init__(self):
-        # Values
-        self.inputs: np.ndarray
-        self.outputs: np.ndarray
+    """Softmax activation function that outputs the probs."""
 
-        # Grads
-        self.grads: np.ndarray
-        self.inputs_grad: np.ndarray
-
-    def forward(self, inputs: np.ndarray) -> np.ndarray:
+    def forward(self, inputs):
         """
-         Forward pass
+        Forward pass
 
-         Parameters
-         ----------
-         inputs: shape (num_batches, *)
+        Parameters
+        ----------
+        inputs: 
+            shape: (num_batches, *)
 
-         Returns
-         -------
-         outputs: shape (num_batches, *)
+        Returns
+        -------
+        outputs:
+            shape: (num_batches, *)
 
-         Examples
-         --------
-         >>> inputs = np.random.rand(5, 10)
-         >>> softmax = softmax(1, 10)
-         >>> outputs = softmax.forward(inputs)
-         >>> outputs.sum()
-         1.0
-         """
+        Examples
+        --------
+        >>> inputs = np.random.rand(5, 10)
+        >>> softmax = softmax(1, 10)
+        >>> outputs = softmax.forward(inputs)
+        >>> outputs.sum()
+        1.0
+        """
         self.inputs = inputs
 
         # overflow and underflow stability
         exponents = np.exp(
-            self.inputs - np.max(self.inputs, axis=-1, keepdims=True))
+            self.inputs - np.max(self.inputs, axis=-1, keepdims=True)
+        )
 
         # Get the probabilities
         self.outputs = exponents / exponents.sum(axis=-1, keepdims=True)
 
         return self.outputs
 
-    def backward(self, grads: np.ndarray):
+    def backward(self, grads):
         """
         Computes gradient 
 

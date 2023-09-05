@@ -1,17 +1,18 @@
 import numpy as np
+from .utils import sparse
 
 
-def classification_accuracy(y_pred: np.ndarray, y_true: np.ndarray) -> np.float64:
+def classification_accuracy(y_pred, y_true):
     """
     Accuracy for classifcation tasks
 
     Parameters
     ----------
     y_pred: The prediction probabilities.
-            shape (num_batches, *)
+        shape: (num_batches, *)
 
     y_true: The prediction probabilities.
-            shape (same shape as y_pred) or (num_batches)
+        shape: (same shape as y_pred) or (num_batches)
 
     Returns
     -------
@@ -29,9 +30,7 @@ def classification_accuracy(y_pred: np.ndarray, y_true: np.ndarray) -> np.float6
     0.6666666666666666
     """
     y_pred = np.argmax(y_pred, axis=-1)
-
-    if y_true.ndim == 2:
-        y_true = np.argmax(y_true, axis=-1)
+    y_true = sparse(y_true)
 
     acc = np.mean(y_pred == y_true)
 

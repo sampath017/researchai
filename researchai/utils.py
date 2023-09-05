@@ -1,21 +1,22 @@
 import numpy as np
 
 
-def one_hot(array: np.ndarray, num_classes: int = -1) -> np.ndarray:
+def one_hot(array, num_classes=-1):
     """
     Convert sparse array to one-hot encoded
 
     Parameters
     ----------
     array: array to be encoded.
-            shape (num_batches, *)
+        shape: (num_batches, *)
 
     num_classes: number of classes to encode with
+        type: int
 
     Returns
     -------
     output: encoded array
-            shape (num_batches, num_classes)
+        shape: (num_batches, num_classes)
     """
 
     # check if starts from 0 and incremented by 1.
@@ -34,19 +35,19 @@ def one_hot(array: np.ndarray, num_classes: int = -1) -> np.ndarray:
     return output
 
 
-def sparse(array: np.ndarray) -> np.ndarray:
+def sparse(array):
     """
     Convert one-hot encoded array to sparse
 
     Parameters
     ----------
     array: array to be encoded.
-            shape (num_batches, num_classes)
+        shape: (num_batches, num_classes)
 
     Returns
     -------
     output: encoded array
-            shape (num_batches, )
+        shape: (num_batches, )
     """
 
     # check for sparse

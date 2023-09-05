@@ -1,53 +1,37 @@
 import numpy as np
 
-from abc import ABC, abstractmethod
-from typing import Literal
 
-Linearity = Literal["Linear", "ReLU", "Tanh"]
-
-
-class Layer(ABC):
-    @abstractmethod
-    def forward(self, inputs: np.ndarray) -> np.ndarray:
-        pass
-
-    def backward(self, grads: np.ndarray) -> np.ndarray:
-        pass
-
-
-class Dense(Layer):
-    def __init__(self, in_features: int, out_features: int, non_linearity: Linearity = "Linear", bias: bool = True):
+class Dense:
+    def __init__(
+        self,
+        in_features,
+        out_features,
+        non_linearity="Linear",
+        bias=True
+    ):
         """
         A fully connected layer
 
         Parameters
         ----------
         in_features: Input dimensions
-            shape (num_batches, self.in_features)
+            type: int
 
         out_features: Output dimensions
-            shape (num_batches, self.in_features)
+            type: int
 
-        bias: weather to include bias or not.
+        bias: weather to include biases or not.
+            type: boolean
 
-        non_linearity: To calculate gain for kaiming initialization
+        non_linearity: type of non-linearity used in the hidden units
+            to calculate gain for kaiming initialization
         """
-        self.in_features: int = in_features
-        self.out_features: int = out_features
-        self.bias: bool = bias
+        self.in_features = in_features
+        self.out_features = out_features
+        self.bias = bias
 
-        self.non_linearity: Linearity = non_linearity
+        self.non_linearity = non_linearity
         self._kaiming_init()
-
-        # Values
-        self.inputs: np.ndarray
-        self.outputs: np.ndarray
-
-        # Grads
-        self.grads: np.ndarray
-        self.weights_grad: np.ndarray
-        self.biases_grad: np.ndarray
-        self.inputs_grad: np.ndarray
 
     def _kaiming_init(self):
         if self.non_linearity == "ReLU":
@@ -62,25 +46,33 @@ class Dense(Layer):
         # kaiming normal
         std = gain / np.sqrt(self.in_features)
 
-        # Parameters
+        # init parameters
         self.weights = np.random.randn(
             self.in_features, self.out_features) * std
-        self.weights_velocity: np.ndarray = np.zeros_like(self.weights)
+        self.weights_updates = np.zeros_like(self.weights)
+        self.weights_velocity = np.zeros_like(self.weights)
+        self.weights_cache = np.zeros_like(self.weights)
         if self.bias:
             self.biases = np.zeros(self.out_features)
-            self.biases_velocity: np.ndarray = np.zeros_like(self.biases)
+            self.biases_updates = np.zeros_like(self.biases)
+            self.biases_velocity = np.zeros_like(self.biases)
+            self.biases_cache = np.zeros_like(self.biases)
 
-    def forward(self, inputs: np.ndarray) -> np.ndarray:
+    def forward(self, inputs):
         """
         Forward pass
 
         Parameters
         ----------
-        inputs: shape (num_batches, self.in_features)
+        inputs: 
+            shape: (num_batches, self.in_features)
+            type: array_like
 
         Returns
         -------
-        outputs: shape(num_batches, self.out_features)
+        outputs: 
+            shape(num_batches, self.out_features)
+            type: array_like
 
         Examples
         --------
@@ -98,19 +90,21 @@ class Dense(Layer):
 
         return self.outputs
 
-    def backward(self, grads: np.ndarray) -> np.ndarray:
+    def backward(self, grads):
         """
         Computer gradient for this layer values and parameters
 
         Parameters
         ----------
         grads: incoming gradients during backpropagation using chain rule
-            shape (num_batches, self.out_features)
+            shape: (num_batches, self.out_features)
+            type: array_like
 
         Returns
         -------
         inputs_grad: gradients computed with respective to input values
-            shape(num_batches, self.in_features)
+            shape: (num_batches, self.in_features)
+            type: array_like
         """
         self.grads = grads
 

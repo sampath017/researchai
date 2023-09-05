@@ -1,11 +1,11 @@
 import numpy as np
 
-from researchai.activations import Softmax
-from researchai.losses import CategoricalCrossEntropy
-from researchai.utils import sparse
+from .activations import Softmax
+from .losses import CrossEntropy
+from .utils import sparse
 
 
-class Softmax_CategoricalCrossentropy():
+class Softmax_CrossEntropy():
     """
     Softmax activation and categorical cross-entropy loss
     combined to make computation more efficient during backpropagation
@@ -13,25 +13,21 @@ class Softmax_CategoricalCrossentropy():
 
     def __init__(self):
         self.activation = Softmax()
-        self.loss_fn = CategoricalCrossEntropy()
+        self.loss_fn = CrossEntropy()
 
-        self.inputs: np.ndarray
-        self.y_true: np.ndarray
-        self.outputs: np.ndarray
-
-    def forward(self, inputs: np.ndarray, y_true: np.ndarray):
+    def forward(self, inputs, y_true):
         """
         Forward pass
 
         Parameters
         ----------
         inputs: softmax inputs
-        shape (num_batches, *)
+            shape: (num_batches, *)
 
         Returns
         -------
         outputs: cross-entropy loss
-        shape (num_batches, *)
+            shape: (num_batches, *)
 
         Examples
         --------
